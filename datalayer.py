@@ -3,6 +3,7 @@ from datetime import datetime
 from pynamodb import models, attributes
 
 
+# noinspection PyAbstractClass
 class Topic(models.Model):
     topic = attributes.UnicodeAttribute(hash_key=True)
     last_vote = attributes.UTCDateTimeAttribute(default=datetime.now)
