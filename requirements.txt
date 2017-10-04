@@ -1,3 +1,4 @@
 zappa
-hug
 pynamodb
+hug
+flask-restful
