@@ -1,12 +1,14 @@
 # Sometimes you just need a hammer
 
-##Install
+## Install
 
     pip install -U -r requirements.txt
     zappa init
 
-##Setup
+## Setup
+
 use the zappa_settings_example.json file to build your own zappa_settings.json file
     
-##Deployment
+## Deployment
+
     zappa deploy <deploymnet name>
