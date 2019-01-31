@@ -5,8 +5,8 @@ import datetime
 from labella import scale, timeline, utils
 
 
-def pycolor(data):
-    py_ver = data.get('python', None)
+def bgcolor(data):
+    py_ver = data.get('python')
     if py_ver:
         if py_ver >= 3:
             return "#4584b6"
@@ -14,19 +14,30 @@ def pycolor(data):
             return "#ddbe47"
         elif py_ver >= 1:
             return "#FF76ab"
-    if data.get('source', None) == 'django':
-        return "#0C3C26"
-    if data.get('source', None) == 'marvel':
-        return "#f0141e"
-    if data.get('source', None) == 'starwars':
-        return "#1ed014"
-    if data.get('source', None) == 'js':
-        return "#1ed014"
-    if data.get('source', None) == 'bs':
-        return "#141ed0"
-    if data.get('source', None) == 'windows':
-        return "#1e14d0"
-    return "#000000"
+
+    BG_COLOUR = {
+        'django': "#0C3C26",
+        'yii': "#9BB76C",
+        'marvel': "#f0141e",
+        'starwars': "#1ed014",
+        'jquery': "#1ed014",
+        'bs': "#141ed0",
+        'windows': "#1e14d0",
+        'ruby': "#CC342D",
+        'php': "#4f5b93",
+        'java': "#ED8B00",
+        'js': "#F6D140",
+        'r': '#4671AD',
+    }
+    return BG_COLOUR.get(data.get('source'), "#000000")  # if matched return value, if not return default
+
+
+def fgcolor(data):
+    FG_COLOR = {
+        'js': "#000000",
+        # 'r': '#000000',
+    }
+    return FG_COLOR.get(data.get('source'), "#FFFFFF")  # if matched return value, if not return default
 
 
 WINDOWS = [
@@ -68,25 +79,25 @@ MARVEL = [
 ]
 
 JQUERY = [
-    {'source': 'js', 'text': 'jquery 1.0', 'time': datetime.date(2006, 8, 26)},
-    {'source': 'js', 'text': 'jquery 1.1', 'time': datetime.date(2007, 1, 14)},
-    {'source': 'js', 'text': 'jquery 1.2', 'time': datetime.date(2007, 9, 10)},
-    {'source': 'js', 'text': 'jquery 1.3', 'time': datetime.date(2009, 1, 14)},
-    {'source': 'js', 'text': 'jquery 1.4', 'time': datetime.date(2010, 1, 14)},
-    {'source': 'js', 'text': 'jquery 1.5', 'time': datetime.date(2011, 1, 31)},
-    {'source': 'js', 'text': 'jquery 1.6', 'time': datetime.date(2011, 5, 3)},
-    {'source': 'js', 'text': 'jquery 1.7', 'time': datetime.date(2011, 11, 3)},
-    {'source': 'js', 'text': 'jquery 1.8', 'time': datetime.date(2012, 8, 9)},
-    {'source': 'js', 'text': 'jquery 1.9', 'time': datetime.date(2013, 1, 15)},
-    {'source': 'js', 'text': 'jquery 1.10', 'time': datetime.date(2013, 5, 24)},
-    {'source': 'js', 'text': 'jquery 1.11', 'time': datetime.date(2014, 1, 24)},
-    {'source': 'js', 'text': 'jquery 1.12', 'time': datetime.date(2016, 1, 8)},
-    {'source': 'js', 'text': 'jquery 2.0', 'time': datetime.date(2013, 4, 18)},
-    {'source': 'js', 'text': 'jquery 2.1', 'time': datetime.date(2014, 1, 24)},
-    {'source': 'js', 'text': 'jquery 2.2', 'time': datetime.date(2016, 1, 8)},
-    {'source': 'js', 'text': 'jquery 3.0', 'time': datetime.date(2016, 6, 9)},
-    {'source': 'js', 'text': 'jquery 3.1', 'time': datetime.date(2016, 7, 7)},
-    {'source': 'js', 'text': 'jquery 3.2', 'time': datetime.date(2017, 3, 16)},
+    {'source': 'jquery', 'text': 'jquery 1.0', 'time': datetime.date(2006, 8, 26)},
+    {'source': 'jquery', 'text': 'jquery 1.1', 'time': datetime.date(2007, 1, 14)},
+    {'source': 'jquery', 'text': 'jquery 1.2', 'time': datetime.date(2007, 9, 10)},
+    {'source': 'jquery', 'text': 'jquery 1.3', 'time': datetime.date(2009, 1, 14)},
+    {'source': 'jquery', 'text': 'jquery 1.4', 'time': datetime.date(2010, 1, 14)},
+    {'source': 'jquery', 'text': 'jquery 1.5', 'time': datetime.date(2011, 1, 31)},
+    {'source': 'jquery', 'text': 'jquery 1.6', 'time': datetime.date(2011, 5, 3)},
+    {'source': 'jquery', 'text': 'jquery 1.7', 'time': datetime.date(2011, 11, 3)},
+    {'source': 'jquery', 'text': 'jquery 1.8', 'time': datetime.date(2012, 8, 9)},
+    {'source': 'jquery', 'text': 'jquery 1.9', 'time': datetime.date(2013, 1, 15)},
+    {'source': 'jquery', 'text': 'jquery 1.10', 'time': datetime.date(2013, 5, 24)},
+    {'source': 'jquery', 'text': 'jquery 1.11', 'time': datetime.date(2014, 1, 24)},
+    {'source': 'jquery', 'text': 'jquery 1.12', 'time': datetime.date(2016, 1, 8)},
+    {'source': 'jquery', 'text': 'jquery 2.0', 'time': datetime.date(2013, 4, 18)},
+    {'source': 'jquery', 'text': 'jquery 2.1', 'time': datetime.date(2014, 1, 24)},
+    {'source': 'jquery', 'text': 'jquery 2.2', 'time': datetime.date(2016, 1, 8)},
+    {'source': 'jquery', 'text': 'jquery 3.0', 'time': datetime.date(2016, 6, 9)},
+    {'source': 'jquery', 'text': 'jquery 3.1', 'time': datetime.date(2016, 7, 7)},
+    {'source': 'jquery', 'text': 'jquery 3.2', 'time': datetime.date(2017, 3, 16)},
 ]
 
 BOOTSTRAP = [
@@ -131,13 +142,13 @@ STARWARS = [
 
 
 PY_VERSIONS = [
-    # {'text': 'Python 1.0', "python": 1.0, 'time': datetime.date(1994, 1, 1)},
-    # {'text': 'Python 1.5', "python": 1.5, 'time': datetime.date(1997, 12, 31)},
-    # {'text': 'Python 1.6', "python": 1.6, 'time': datetime.date(2000, 8, 5)},
-    # {'text': 'Python 2.0', "python": 2.0, 'time': datetime.date(2000, 10, 16)},
-    # {'text': 'Python 2.1', "python": 2.1, 'time': datetime.date(2001, 4, 17)},
-    # {'text': 'Python 2.2', "python": 2.2, 'time': datetime.date(2001, 12, 21)},
-    # {'text': 'Python 2.3', "python": 2.3, 'time': datetime.date(2003, 7, 29)},
+    {'text': 'Python 1.0', "python": 1.0, 'time': datetime.date(1994, 1, 1)},
+    {'text': 'Python 1.5', "python": 1.5, 'time': datetime.date(1997, 12, 31)},
+    {'text': 'Python 1.6', "python": 1.6, 'time': datetime.date(2000, 8, 5)},
+    {'text': 'Python 2.0', "python": 2.0, 'time': datetime.date(2000, 10, 16)},
+    {'text': 'Python 2.1', "python": 2.1, 'time': datetime.date(2001, 4, 17)},
+    {'text': 'Python 2.2', "python": 2.2, 'time': datetime.date(2001, 12, 21)},
+    {'text': 'Python 2.3', "python": 2.3, 'time': datetime.date(2003, 7, 29)},
     {'text': 'Python 2.4', "python": 2.4, 'time': datetime.date(2004, 11, 30)},
     {'text': 'Python 2.5', "python": 2.5, 'time': datetime.date(2006, 9, 19)},
     {'text': 'Python 2.6', "python": 2.6, 'time': datetime.date(2008, 10, 1)},
@@ -149,13 +160,14 @@ PY_VERSIONS = [
     {'text': 'Python 3.4', "python": 3.4, 'time': datetime.date(2014, 3, 16)},
     {'text': 'Python 3.5', "python": 3.5, 'time': datetime.date(2015, 9, 13)},
     {'text': 'Python 3.6', "python": 3.6, 'time': datetime.date(2016, 12, 23)},
-    # {'text': 'Python 3.7', "python": 3.7, 'time': datetime.date(2018, 6, 15)},
+    {'text': 'Python 3.7', "python": 3.7, 'time': datetime.date(2018, 6, 27)},
+    {'text': 'Python 3.8', "python": 3.8, 'time': datetime.date(2019, 10, 20)},
 ]
 
 
 DJANGO_VERSIONS = [
-    {'source': 'django', 'text': 'Django 0.9', 'time': datetime.date(2005, 11, 16)},
-    {'source': 'django', 'text': 'Django 0.91', 'time': datetime.date(2006, 1, 11)},
+    # {'source': 'django', 'text': 'Django 0.9', 'time': datetime.date(2005, 11, 16)},
+    # {'source': 'django', 'text': 'Django 0.91', 'time': datetime.date(2006, 1, 11)},
     {'source': 'django', 'text': 'Django 0.95', 'time': datetime.date(2006, 7, 29)},
     {'source': 'django', 'text': 'Django 0.96', 'time': datetime.date(2007, 3, 23)},
     {'source': 'django', 'text': 'Django 1.0', 'time': datetime.date(2008, 9, 3)},
@@ -171,21 +183,141 @@ DJANGO_VERSIONS = [
     {'source': 'django', 'text': 'Django 1.10', 'time': datetime.date(2016, 8, 1)},
     {'source': 'django', 'text': 'Django 1.11', 'time': datetime.date(2017, 4, 4)},
     {'source': 'django', 'text': 'Django 2.0', 'time': datetime.date(2017, 12, 15)},
-    # {'source': 'django', 'text': 'Django 2.1', 'time': datetime.date(2018, 8, 15)},
+    {'source': 'django', 'text': 'Django 2.1', 'time': datetime.date(2018, 8, 1)},
+    {'source': 'django', 'text': 'Django 2.2', 'time': datetime.date(2019, 8, 1)},
+]
+
+PHP_VERSIONS = [
+    {'source': 'php', 'text': 'PHP 1.0', 'time': datetime.date(1995, 6, 8)},
+    {'source': 'php', 'text': 'PHP 2.0', 'time': datetime.date(1997, 11, 1)},
+    {'source': 'php', 'text': 'PHP 3.0', 'time': datetime.date(1998, 6, 6)},
+    {'source': 'php', 'text': 'PHP 4.0', 'time': datetime.date(2000, 5, 22)},
+
+    {'source': 'php', 'text': 'PHP 5.0', 'time': datetime.date(2004, 7, 13)},
+    {'source': 'php', 'text': 'PHP 5.1', 'time': datetime.date(2005, 11, 24)},
+    {'source': 'php', 'text': 'PHP 5.2', 'time': datetime.date(2006, 11, 2)},
+    {'source': 'php', 'text': 'PHP 5.3', 'time': datetime.date(2009, 6, 30)},
+    {'source': 'php', 'text': 'PHP 5.4', 'time': datetime.date(2012, 3, 1)},
+    {'source': 'php', 'text': 'PHP 5.5', 'time': datetime.date(2013, 6, 20)},
+    {'source': 'php', 'text': 'PHP 5.6', 'time': datetime.date(2014, 8, 28)},
+
+    {'source': 'php', 'text': 'PHP 7.0', 'time': datetime.date(2015, 12, 3)},
+    {'source': 'php', 'text': 'PHP 7.1', 'time': datetime.date(2016, 12, 1)},
+    {'source': 'php', 'text': 'PHP 7.2', 'time': datetime.date(2017, 11, 30)},
+    {'source': 'php', 'text': 'PHP 7.3', 'time': datetime.date(2018, 12, 6)},
+]
+
+YII_VERSIONS = [
+    {'source': 'yii', 'text': 'Yii 1.0', 'time': datetime.date(2008, 12, 3)},
+    {'source': 'yii', 'text': 'Yii 1.1', 'time': datetime.date(2010, 1, 10)},
+    {'source': 'yii', 'text': 'Yii 1.1.15',
+        'time': datetime.date(2014, 6, 29)},
+    {'source': 'yii', 'text': 'Yii 2.0', 'time': datetime.date(2014, 10, 12)},
+]
+
+
+RUBY_VERSIONS = [
+    {'source': 'ruby', 'text': 'Ruby 1.0', 'time': datetime.date(1996, 12, 25)},
+    {'source': 'ruby', 'text': 'Ruby 1.8', 'time': datetime.date(2003, 8, 4)},
+    {'source': 'ruby', 'text': 'Ruby 1.9', 'time': datetime.date(2007, 12, 25)},
+
+    {'source': 'ruby', 'text': 'Ruby 2.0', 'time': datetime.date(2013, 2, 24)},
+    {'source': 'ruby', 'text': 'Ruby 2.1', 'time': datetime.date(2013, 12, 25)},
+    {'source': 'ruby', 'text': 'Ruby 2.2', 'time': datetime.date(2014, 12, 25)},
+    {'source': 'ruby', 'text': 'Ruby 2.3', 'time': datetime.date(2015, 12, 25)},
+    {'source': 'ruby', 'text': 'Ruby 2.4', 'time': datetime.date(2016, 12, 25)},
+    {'source': 'ruby', 'text': 'Ruby 2.5', 'time': datetime.date(2017, 12, 25)},
+    {'source': 'ruby', 'text': 'Ruby 2.6', 'time': datetime.date(2018, 12, 25)},
+
+    # {'source': 'ruby', 'text': 'Ruby 3.0', 'time': datetime.date(2020, 2, 24)},
+]
+
+JAVA_VERSIONS = [
+    {'source': 'java', 'text': 'Java 1.0', 'time': datetime.date(1996, 1, 1)},
+    {'source': 'java', 'text': 'Java 1.1', 'time': datetime.date(1997, 2, 1)},
+    {'source': 'java', 'text': 'Java 1.2', 'time': datetime.date(1998, 12, 1)},
+    {'source': 'java', 'text': 'Java 1.3', 'time': datetime.date(2000, 5, 1)},
+    {'source': 'java', 'text': 'Java 1.4', 'time': datetime.date(2002, 2, 1)},
+    {'source': 'java', 'text': 'Java 5.0', 'time': datetime.date(2004, 9, 1)},
+    {'source': 'java', 'text': 'Java 6.0', 'time': datetime.date(2006, 12, 1)},
+    {'source': 'java', 'text': 'Java 7.0', 'time': datetime.date(2011, 6, 1)},
+    {'source': 'java', 'text': 'Java 8.0', 'time': datetime.date(2014, 3, 1)},
+    {'source': 'java', 'text': 'Java 9.0', 'time': datetime.date(2017, 9, 1)},
+    {'source': 'java', 'text': 'Java 10.0', 'time': datetime.date(2018, 3, 1)},
+    {'source': 'java', 'text': 'Java 11.0', 'time': datetime.date(2018, 9, 1)},
+    {'source': 'java', 'text': 'Java 12.0', 'time': datetime.date(2019, 3, 1)},
+]
+
+JS_VERSIONS = [
+    {'source': 'js', 'text': 'JavaScript 1.0', 'time': datetime.date(1996, 3, 1)},
+    {'source': 'js', 'text': 'JavaScript 1.1', 'time': datetime.date(1996, 8, 1)},
+    {'source': 'js', 'text': 'JavaScript 1.2', 'time': datetime.date(1997, 6, 1)},
+    {'source': 'js', 'text': 'JavaScript 1.3', 'time': datetime.date(1998, 10, 1)},
+    {'source': 'js', 'text': 'JavaScript 1.5', 'time': datetime.date(2000, 11, 1)},
+    {'source': 'js', 'text': 'JavaScript 1.6', 'time': datetime.date(2005, 11, 1)},
+    {'source': 'js', 'text': 'JavaScript 1.7', 'time': datetime.date(2006, 10, 1)},
+    {'source': 'js', 'text': 'JavaScript 1.8', 'time': datetime.date(2008, 6, 1)},
+]
+
+ES_VERSIONS = [
+    {'source': 'js', 'text': 'ECMA Script 1.0', 'time': datetime.date(1997, 6, 1)},
+    {'source': 'js', 'text': 'ECMA Script 2.0', 'time': datetime.date(1998, 6, 1)},
+    {'source': 'js', 'text': 'ECMA Script 3.0', 'time': datetime.date(1999, 12, 1)},
+
+    {'source': 'js', 'text': 'ECMA Script 5.0', 'time': datetime.date(2009, 12, 1)},
+    {'source': 'js', 'text': 'ECMA Script 5.1', 'time': datetime.date(2011, 6, 1)},
+    {'source': 'js', 'text': 'ECMA Script 6.0', 'time': datetime.date(2015, 6, 1)},
+    {'source': 'js', 'text': 'ECMA Script 7.0', 'time': datetime.date(2016, 6, 1)},
+    {'source': 'js', 'text': 'ECMA Script 8.0', 'time': datetime.date(2017, 6, 1)},
+    {'source': 'js', 'text': 'ECMA Script 9.0', 'time': datetime.date(2018, 6, 1)},
+]
+
+R_VERSIONS = [
+    {'source': 'r', 'text': 'R 0.6', 'time': datetime.date(1997, 12, 5)},
+    {'source': 'r', 'text': 'R 1.0', 'time': datetime.date(2000, 2, 29)},
+    {'source': 'r', 'text': 'R 1.4', 'time': datetime.date(2001, 12, 19)},
+
+    {'source': 'r', 'text': 'R 2.0', 'time': datetime.date(2004, 10, 4)},
+    {'source': 'r', 'text': 'R 2.1', 'time': datetime.date(2005, 4, 18)},
+    {'source': 'r', 'text': 'R 2.11', 'time': datetime.date(2010, 4, 22)},
+    {'source': 'r', 'text': 'R 2.13', 'time': datetime.date(2011, 4, 14)},
+    {'source': 'r', 'text': 'R 2.14', 'time': datetime.date(2011, 10, 31)},
+    {'source': 'r', 'text': 'R 2.15', 'time': datetime.date(2012, 3, 30)},
+
+    {'source': 'r', 'text': 'R 3.0', 'time': datetime.date(2013, 4, 3)},
+    {'source': 'r', 'text': 'R 3.4', 'time': datetime.date(2017, 4, 21)},
+    {'source': 'r', 'text': 'R 3.5', 'time': datetime.date(2018, 4, 23)},
 ]
 
 
 tl = timeline.TimelineTex(
-    PY_VERSIONS + DJANGO_VERSIONS,  # + JQUERY, # + MARVEL,
+    [
+        {'source': 'today', 'text': 'Today', 'time': datetime.date.today()},
+    ]
+    + PY_VERSIONS
+    + DJANGO_VERSIONS
+    + YII_VERSIONS
+    # + MARVEL
+    # + STARWARS
+    # + JQUERY
+    + WINDOWS
+    + PHP_VERSIONS
+    + RUBY_VERSIONS
+    + JAVA_VERSIONS
+    + JS_VERSIONS
+    + ES_VERSIONS
+    + R_VERSIONS
+    ,
     options={
         # 'direction': 'down',
-        'dotColor': pycolor,
-        'labelBgColor': pycolor,
-        'linkColor': pycolor,
+        'dotColor': bgcolor,
+        'labelBgColor': bgcolor,
+        'labelTextColor': fgcolor,
+        'linkColor': bgcolor,
         'scale': scale.TimeScale(),
         # 'layerGap': 40,
         # 'initialWidth': 2000,
-        'initialHeight': 1000,
+        'initialHeight': 3200,
         'labelPadding': {'left': 0, 'right': 0, 'top': 0, 'bottom': 0},
     },
 )
