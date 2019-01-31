@@ -12,6 +12,7 @@ def votes(request):
     """ List topics which have been voted on """
     return Response(json=[dict(x) for x in Topic.scan()])
     # return [dict(x) for x in Topic.scan()]
+    # return Response("some text", json=True)
 
 
 @view_defaults(route_name='vote')
