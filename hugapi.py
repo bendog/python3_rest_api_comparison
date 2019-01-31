@@ -20,9 +20,10 @@ def vote(topic: hug.types.text):
 
 @hug.post()
 @hug.local()
-def vote(topic: hug.types.text):
+def vote(topic: hug.types.text, response):
     """Add your voice to the list of topics PDPD should discuss"""
     t = Topic(topic=topic)
     t.add_vote()
     t.refresh()
+    response.status = hug.HTTP_201
     return dict(t)
