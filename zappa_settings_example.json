@@ -1,26 +1,21 @@
 {
-    "hug": {
-        "app_function": "hugapi.__hug_wsgi__",
+    "common": {
+        "project_name": "pdpd_demo",
         "aws_region": "ap-southeast-2",
-        "project_name": "hugtest",
         "runtime": "python3.6",
         "s3_bucket": "bendog-zappa-deploy",
         "keep_warm": false
+    },
+    "hug": {
+        "extend": "common",
+        "app_function": "hugapi.__hug_wsgi__"
     },
     "flask": {
-        "app_function": "flaskapi.app",
-        "aws_region": "ap-southeast-2",
-        "project_name": "flasktest",
-        "runtime": "python3.6",
-        "s3_bucket": "bendog-zappa-deploy",
-        "keep_warm": false
+        "extend": "common",
+        "app_function": "flaskapi.app"
     },
     "pyramid": {
-        "app_function": "pyramidapi.generate_wsgi_app",
-        "aws_region": "ap-southeast-2",
-        "project_name": "pyramidtest",
-        "runtime": "python3.6",
-        "s3_bucket": "bendog-zappa-deploy",
-        "keep_warm": false
+        "extend": "common",
+        "app_function": "pyramidapi.generate_wsgi_app"
     }
 }
